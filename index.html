@@ -9,13 +9,17 @@
 <body>
     <h1>Exemplo 02</h1>
     <canvas></canvas>
-    <img src = "assets/mario.png"/>
+    <img src = "assets/kirby.png"/>
     <script>
         const canvas = document.querySelector("canvas");
         const ctx = canvas.getContext("2d");
-
+        const mario = document.querySelector("img");
+        mario.addEventListener("load", terminouDeCarregar);
         ctx.fillStyle = "green";
         ctx.fillRect(0, 0, canvas.width, canvas.height);
+        function terminouDeCarregar(){
+           ctx.drawImage(mario, 0,0); 
+        }
     </script>
 </body>
 </html>
