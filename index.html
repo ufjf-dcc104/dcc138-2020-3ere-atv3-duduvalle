@@ -12,15 +12,17 @@
     <script>
         const canvas = document.querySelector("canvas");
         const ctx = canvas.getContext("2d");
-        const kirby = new Image();
-        kirby.src = "assets/kirby.png"
+        const zero = new Image();
+        zero.src = "assets/zero.png"
 
-        kirby.addEventListener("load", terminouDeCarregar);
+        zero.addEventListener("load", terminouDeCarregar);
 
         
 
         let l = 0;
         let c = 0;
+        let pose = 0;
+        let quadro = 0;
         function terminouDeCarregar(){
            
         }
@@ -36,17 +38,14 @@
             ctx.fillStyle = "green";
             ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-            c = c + 8*dt;
-            if(c>8)
-            {
-                c = 0;
-            }
+            quadro = (quadro > 2.9) ? 0 : quadro + 2 * dt;
+        
 
-            ctx.drawImage(kirby, 
+            ctx.drawImage(zero, 
             //sx,sy,sh,sw
-            Math.floor(c)*63 + 3, Math.floor(l)*63 + 14, 63, 63,
+            Math.floor(quadro)*120 + (pose%3)*360, Math.floor(pose/3)*116, 120, 116,
             //dx,dy,dh,dw
-            0, 0, 63, 63
+            0, 0, 120, 116
             ); 
 
             requestAnimationFrame(passo);
