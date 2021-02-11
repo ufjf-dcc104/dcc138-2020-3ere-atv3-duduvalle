@@ -17,18 +17,42 @@
 
         kirby.addEventListener("load", terminouDeCarregar);
 
-        ctx.fillStyle = "green";
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        
+
         let l = 0;
         let c = 0;
         function terminouDeCarregar(){
-           ctx.drawImage(kirby, 
-           //sx,sy,sh,sw
-           c*44, l*44, 44, 44,
-           //dx,dy,dh,dw
-           0, 0, 44, 44
-           ); 
+           
         }
+
+        let t0;
+        let dt;
+
+        requestAnimationFrame(passo);
+        function passo(t){
+            t0 = t0 ?? t;
+            dt = (t - t0)/1000;
+            //desenha fundo
+            ctx.fillStyle = "green";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            c = c + 8*dt;
+            if(c>8)
+            {
+                c = 0;
+            }
+
+            ctx.drawImage(kirby, 
+            //sx,sy,sh,sw
+            Math.floor(c)*63 + 3, Math.floor(l)*63 + 14, 63, 63,
+            //dx,dy,dh,dw
+            0, 0, 63, 63
+            ); 
+
+            requestAnimationFrame(passo);
+            t0 = t;
+        }
+
     </script>
 </body>
 </html>
